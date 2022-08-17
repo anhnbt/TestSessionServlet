@@ -37,13 +37,12 @@ public class HomeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session = request.getSession();
-		
-		if (session.getAttribute("counter") == null) {
+		if (session.getAttribute("SITE_NAME") == null) {
+			session.setAttribute("SITE_NAME", "TONG_CUC");
 			statisticsCounter.update("TONG_CUC");
-			System.out.println("Session bi null");
-		} else {
-			System.out.println("Da co counter");
-			System.out.println(session.getAttribute("counter"));
+		}
+		if (session.getAttribute("counter") != null) {
+			System.out.println("SITE_NAME>>>>>>>>>>>>>>>>>>>>>>>>>>" + session.getAttribute("SITE_NAME"));
 			SessionCounter sessionCounter = (SessionCounter) session.getAttribute("counter");
 			response.getWriter().append("\nNumber of online user(s): " + sessionCounter.getActiveSessionNumber("TONG_CUC"));
 		}

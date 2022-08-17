@@ -33,10 +33,9 @@ public class SessionCounter implements HttpSessionListener {
 	@Override
 	public void sessionCreated(HttpSessionEvent se) {
 		HttpSession session = se.getSession();
+		System.out.println("SessionCounter sessionCreated");
 		sessions.get("TONG_CUC").add(session.getId());
 		session.setAttribute("counter", this);
-		statisticsCounter.update("TONG_CUC");
-		System.out.println("SessionCounter sessionCreated");
 
 	}
 
